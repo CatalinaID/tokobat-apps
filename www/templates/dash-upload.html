@@ -1,0 +1,14 @@
+<ion-view view-title="Unggah Resep">
+  <ion-content class="padding">
+    <div>
+	    <label class="item item-input">
+		   	<input type="text" placeholder="Nama pesanan" ng-model="namaPesanan">
+		</label>
+	</div>
+	<div class="button-bar">
+		<a class="button icon ion-android-camera" ng-click="getPhoto()"></a>
+   		<a class="button icon ion-android-folder-open" ng-click="pickPhoto()"></a>
+	</div>
+	<img ng-src="{{uri}}" style="max-width: 100%">
+  </ion-content>
+</ion-view>

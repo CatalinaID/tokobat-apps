@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ngCordova'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -47,14 +47,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each tab has its own nav history stack:
 
   .state('tab.dash', {
-    url: '/dash',
-    views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      url: '/dash',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/tab-dash.html',
+          controller: 'DashCtrl'
+        }
       }
-    }
-  })
+    })
+  .state('tab.upload', {
+      url: '/dash/upload',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/dash-upload.html',
+          controller: 'UploadCtrl'
+        }
+      }
+    })
+  .state('tab.search', {
+      url: '/dash/search',
+      views: {
+        'tab-dash': {
+          templateUrl: 'templates/dash-search.html',
+          controller: 'UploadCtrl'
+        }
+      }
+    })
 
   .state('tab.chats', {
       url: '/chats',
