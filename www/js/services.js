@@ -63,4 +63,29 @@ angular.module('starter.services', [])
       return q.promise;
     }
   }
-}]);
+}])
+
+.factory('Pesanan', function() {
+  var pesanan = {
+    nama: '',
+    apotek: '',
+    uriimage: '',
+  };
+  return {
+    getDetails: function() {
+      return pesanan;
+    },
+    setDetails: function(nama, apotek) {
+      
+    },
+    setNamaPesanan: function(_nama) {
+      pesanan.nama = _nama;
+    },
+    getNamaPesanan: function() {
+      return pesanan.nama;
+    },
+    setUriImage: function(_uri) {
+      pesanan.uriimage = _uri;
+    }, 
+  };
+});

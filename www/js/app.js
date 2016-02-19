@@ -64,6 +64,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
       }
     })
+  .state('tab.findapotek', {
+    url: '/dash/find-apotek',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/dash-find-apotek.html',
+        controller: 'FindApotekCtrl'
+      }
+    }
+  })
   .state('tab.search', {
       url: '/dash/search',
       views: {
