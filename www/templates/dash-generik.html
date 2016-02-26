@@ -9,8 +9,15 @@
 		<label class="item item-input">
 		   	<input type="text" placeholder="Nama obat" ng-model="namaObat">
 		   	<input type="text" placeholder="Jumlah" ng-model="jmlObat">
-		   	<a class="button" ng-click="">Order</a>
+		   	<a class="button" ng-click="addPesanan(namaObat, jmlObat)">Order</a>
 		</label>
+	</div>
+	<div>
+		<ion-list>
+			<ion-item ng-repeat="order in orders">
+			{{order.nama}} ({{order.jml}})
+			</ion-item>
+		</ion-list>
 	</div>
 	<div class="button-bar">
 		<a class="button" ui-sref="tab.findapotek" ng-click="setUpPesanan(namaPesanan)">Next</a>

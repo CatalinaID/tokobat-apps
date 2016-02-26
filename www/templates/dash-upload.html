@@ -5,8 +5,8 @@
 		   	<input type="text" placeholder="Nama pesanan" ng-model="namaPesanan">
 		</label>
 	</div>
-	<div class="button-bar">
-		<a class="button icon ion-android-camera" ng-click="getPhoto()"></a>
+	<div class="button-bar" ng-style="{background-color: #8bc53f}">
+		<a class="button icon ion-android-camera balanced" ng-click="getPhoto()"></a>
    		<a class="button icon ion-android-folder-open" ng-click="pickPhoto()"></a>
 	</div>
 	<img ng-src="{{uri}}" style="max-width: 100%">

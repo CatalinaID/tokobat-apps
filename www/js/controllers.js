@@ -40,11 +40,17 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('GenerikCtrl', function($scope, Pesanan) {
+.controller('GenerikCtrl', function($scope, Pesanan, ListPesanan) {
+  $scope.orders = [];
   $scope.setUpPesanan = function(name){
     console.log(name);
     Pesanan.setNamaPesanan(name);
     Pesanan.setUriImage($scope.uri);
+  }
+
+  $scope.addPesanan = function(namaObat, jmlObat) {
+    console.log(namaObat, jmlObat);
+    $scope.orders = ListPesanan.addToList(namaObat, jmlObat);
   }
 })
 
