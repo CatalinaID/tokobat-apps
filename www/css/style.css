@@ -1,4 +1,7 @@
 /* Empty. Add your own CSS if you like */
+.small-button {
+  line-height: 5px !important;
+}
 
 .center {
   margin: auto;

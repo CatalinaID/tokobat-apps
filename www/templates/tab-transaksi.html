@@ -3,10 +3,17 @@
     <ion-list>
       <ion-item class="item-remove-animate" ng-repeat="listtran in listtrans" type="item-text-wrap">
         <h2>{{listtran.nama}}</h2>
-        <p  ng-style="listtran.statusT === 'DECLINED' && {'color': 'red'} || listtran.statusT === 'FINISHED' && {'color': 'green'} || listtran.statusT === 'READY' && {'color': 'green'} || listtran.statusT === 'PAID' && {'color': 'blue'} || listtran.statusT === 'ACCEPTED' && {'color': 'blue'} || listtran.statusT === 'WAITING' && {'color': 'yellow'}">{{listtran.tanggal}} | {{listtran.statusT}}</p>
-        <p>{{listtran.detail}}</p>
-
-        <ion-option-button class="button-assertive" ng-click="remove(listtran)">
+        <h5 ng-style="listtran.statusT === 'DECLINED' && {'color': 'red'} || listtran.statusT === 'FINISHED' && {'color': 'green'} || listtran.statusT === 'READY' && {'color': 'green'} || listtran.statusT === 'PAID' && {'color': 'blue'} || listtran.statusT === 'ACCEPTED' && {'color': 'blue'} || listtran.statusT === 'WAITING' && {'color': 'yellow'}">{{listtran.tanggal}} | {{listtran.statusT}}</h5>
+        <p>Detail: {{listtran.detail}}</p>
+        <p ng-if="isPaid(listtran.statusT)">Note: {{listtran.apotekNote}}</p>
+        <p ng-if="showHarga(listtran.statusT)">{{listtran.harga}}</p>
+        <ion-option-button ng-if="isAccepted(listtran.statusT)" class="button-calm" ng-click="pay(listtran)">
+          Pay
+        </ion-option-button>
+        <ion-option-button ng-if="isReady(listtran.statusT)" class="button-balanced" ng-click="finalize(listtran)">
+          Finish
+        </ion-option-button>
+        <ion-option-button ng-if="isWaiting(listtran.statusT)" class="button-assertive" ng-click="remove(listtran)">
           Delete
         </ion-option-button>
       </ion-item>
