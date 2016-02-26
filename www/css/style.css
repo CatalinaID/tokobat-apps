@@ -1,4 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.title.image {
+  margin-top: 7px;
+}
+
 .small-button {
   line-height: 5px !important;
 }
@@ -78,8 +82,9 @@
 .logo {
   background: url('../img/icon.png') center center no-repeat;
     background-size: contain;
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 70px;
+  margin-top: 40px;
 }

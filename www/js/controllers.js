@@ -63,6 +63,7 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
 })
 
 .controller('LoginCtrl', function($scope, $state) {
+  $scope.pagetitle = '<img src=\"../img/smalllogo.png\">';
   $scope.login = function(username, password) {
     console.log(username);
     console.log(password);
