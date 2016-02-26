@@ -6,7 +6,13 @@ angular.module('starter.controllers', [])
 
 .controller('TransaksiCtrl', function($scope, Transaksi, ListTransaksi) {
   $scope.listtrans = ListTransaksi.getList();
-  
+  $scope.remove = function(trans) {
+    ListTransaksi.remove(trans);
+  };
+
+  if(Transaksi.getStatusT() == 'DECLINED') {
+    $scope.statusColor = 'red';
+  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {

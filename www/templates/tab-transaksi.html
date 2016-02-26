@@ -3,10 +3,10 @@
     <ion-list>
       <ion-item class="item-remove-animate" ng-repeat="listtran in listtrans" type="item-text-wrap">
         <h2>{{listtran.nama}}</h2>
-        <p>{{listtran.tanggal}}</p>
+        <p  ng-style="listtran.statusT === 'DECLINED' && {'color': 'red'} || listtran.statusT === 'FINISHED' && {'color': 'green'} || listtran.statusT === 'READY' && {'color': 'green'} || listtran.statusT === 'PAID' && {'color': 'blue'} || listtran.statusT === 'ACCEPTED' && {'color': 'blue'} || listtran.statusT === 'WAITING' && {'color': 'yellow'}">{{listtran.tanggal}} | {{listtran.statusT}}</p>
         <p>{{listtran.detail}}</p>
 
-        <ion-option-button class="button-assertive" ng-click="">
+        <ion-option-button class="button-assertive" ng-click="remove(listtran)">
           Delete
         </ion-option-button>
       </ion-item>

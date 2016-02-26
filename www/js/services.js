@@ -124,6 +124,9 @@ angular.module('starter.services', [])
       transaksi.tanggal = _tanggal;
       transaksi.detail = _detail; 
     },
+    getStatusT: function() {
+      return transaksi.statusT;
+    }
   };
 })
 
@@ -131,31 +134,31 @@ angular.module('starter.services', [])
   var listTransaksi = [{
     id: 0,
     nama: 'Order 1',
-    statusT: '1',
+    statusT: 'DECLINED',
     tanggal: '19-2-2015',
     detail: 'Obat Cacing (2)',
   }, {
     id: 1,
     nama: 'Order 2',
-    statusT: '2',
+    statusT: 'FINISHED',
     tanggal: '17-4-2015',
     detail: 'Konidin (4), Komix (3)',
   }, {
     id: 2,
     nama: 'Order 3',
-    statusT: '3',
+    statusT: 'PAID',
     tanggal: '31-5-2015',
     detail: 'Entrostop (1)',
   }, {
     id: 3,
     nama: 'Order 4',
-    statusT: '4',
+    statusT: 'ACCEPTED',
     tanggal: '2-9-2015',
     detail: 'EnervonC (2), Antangin (5)',
   }, {
     id: 4,
     nama: 'Order 5',
-    statusT: '5',
+    statusT: 'WAITING',
     tanggal: '18-10-2015',
     detail: 'OBH Herbal (1)',
   },
