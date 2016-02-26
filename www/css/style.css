@@ -88,3 +88,7 @@
   margin-bottom: 70px;
   margin-top: 40px;
 }
+
+.smalllogo {
+  background: url('../img/smalllogo.png') center center no-repeat;
+}
