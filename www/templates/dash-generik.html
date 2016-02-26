@@ -6,20 +6,23 @@
 		</label>
 	</div>
 	<div class="row" style="padding-top: 7px;">
-		<div class="col-50 col-offset-35">
+		<label class="item item-input col-60">
 		   	<input type="text" placeholder="Nama obat" ng-model="psn.namaObat">
-		</div>
-		<div class="col-25 col-offset-5">
+		</label>
+		<label class="item item-input col-48">
 		   	<input type="text" placeholder="Jumlah" ng-model="psn.jmlObat">
-		</div>
+		</label>
 		<div class="col-25 col-offset-5">
 			<a class="button" ng-click="addPesanan()">Order</a>
 		</div>
 	</div>
 	<div>
 		<ion-list>
-			<ion-item ng-repeat="order in orders">
-			{{order.nama}} ({{order.jml}})
+			<ion-item class="item-remove-animate" ng-repeat="order in orders">
+				{{order.nama}} ({{order.jml}})
+				<ion-option-button class="button-assertive" ng-click="removeFromList(order)">
+					Delete
+				</ion-option-button>
 			</ion-item>
 		</ion-list>
 	</div>

@@ -91,6 +91,10 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
     $scope.psn.jmlObat = " ";
   }
 
+  $scope.removeFromList = function(pesanan) {
+    ListPesanan.remove(pesanan);
+  };
+
 })
 
 .controller('UploadCtrl', function($scope, Camera, $cordovaImagePicker, $ionicPlatform, Pesanan, RestService, ConnService) {
@@ -135,7 +139,7 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
   
 })
 
-.controller('FindApotekCtrl', function($scope, $state, Pesanan, RestService, ConnService, uiGmapGoogleMapApi) {
+.controller('FindApotekCtrl', function($scope, $state, Pesanan, RestService, ConnService, uiGmapGoogleMapApi, ListPesanan) {
   $scope.namaPesanan = Pesanan.getNamaPesanan();
 
   var options = {timeout: 10000, enableHighAccuracy: true};

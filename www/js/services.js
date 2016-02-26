@@ -150,6 +150,9 @@ angular.module('starter.services', [])
     getList: function() {
       return listpesanan;
     },
+    remove: function(pesanan) {
+      listpesanan.splice(listpesanan.indexOf(pesanan), 1);
+    },
   };
 })
 
