@@ -5,12 +5,16 @@
 		   	<input type="text" placeholder="Nama pesanan" ng-model="namaPesanan">
 		</label>
 	</div>
-	<div>
-		<label class="item item-input">
-		   	<input type="text" placeholder="Nama obat" ng-model="namaObat">
-		   	<input type="text" placeholder="Jumlah" ng-model="jmlObat">
-		   	<a class="button" ng-click="addPesanan(namaObat, jmlObat)">Order</a>
-		</label>
+	<div class="row" style="padding-top: 7px;">
+		<div class="col-50 col-offset-35">
+		   	<input type="text" placeholder="Nama obat" ng-model="psn.namaObat">
+		</div>
+		<div class="col-25 col-offset-5">
+		   	<input type="text" placeholder="Jumlah" ng-model="psn.jmlObat">
+		</div>
+		<div class="col-25 col-offset-5">
+			<a class="button" ng-click="addPesanan()">Order</a>
+		</div>
 	</div>
 	<div>
 		<ion-list>
@@ -19,8 +23,8 @@
 			</ion-item>
 		</ion-list>
 	</div>
-	<div class="button-bar">
-		<a class="button" ui-sref="tab.findapotek" ng-click="setUpPesanan(namaPesanan)">Next</a>
+	<div class="button-bar" style="padding-top: 7px;">
+		<a class="button buttoncolor" ui-sref="tab.findapotek" ng-click="setUpPesanan(namaPesanan)">Next</a>
 	</div>
   </ion-content>
 </ion-view>

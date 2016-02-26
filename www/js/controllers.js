@@ -41,17 +41,23 @@ angular.module('starter.controllers', [])
 })
 
 .controller('GenerikCtrl', function($scope, Pesanan, ListPesanan) {
-  $scope.orders = [];
+  $scope.psn = {};
+
+  $scope.orders = ListPesanan.getList();
   $scope.setUpPesanan = function(name){
     console.log(name);
     Pesanan.setNamaPesanan(name);
     Pesanan.setUriImage($scope.uri);
   }
 
-  $scope.addPesanan = function(namaObat, jmlObat) {
-    console.log(namaObat, jmlObat);
-    $scope.orders = ListPesanan.addToList(namaObat, jmlObat);
+  $scope.addPesanan = function() {
+    console.log($scope.psn.namaObat, $scope.psn.jmlObat);
+    ListPesanan.addToList($scope.psn.namaObat, $scope.psn.jmlObat);
+    console.log($scope.orders.length);
+    $scope.psn.namaObat = " ";
+    $scope.psn.jmlObat = " ";
   }
+
 })
 
 .controller('UploadCtrl', function($scope, Camera, $cordovaImagePicker, $ionicPlatform, Pesanan) {

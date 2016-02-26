@@ -95,10 +95,12 @@ angular.module('starter.services', [])
   return {
     addToList: function(namaobat, jmlobat) {
       var pesanan = {
-        nama: 'namaobat',
-        jml: 'jmlobat',
+        nama: namaobat,
+        jml: jmlobat,
       };
       listpesanan.push(pesanan);
+    },
+    getList: function() {
       return listpesanan;
     },
   };
