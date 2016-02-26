@@ -6,7 +6,50 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
 
 .controller('TransaksiCtrl', function($scope, Transaksi, ListTransaksi) {
   $scope.listtrans = ListTransaksi.getList();
-  
+  $scope.remove = function(trans) {
+    ListTransaksi.remove(trans);
+  };
+  $scope.showHarga = function(statusT) {
+    if (statusT === 'ACCEPTED' || statusT === 'PAID') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  $scope.isReady = function(statusT) {
+    if (statusT === 'READY') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  $scope.isWaiting = function(statusT) {
+    if (statusT === 'WAITING') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  $scope.isAccepted = function(statusT) {
+    if (statusT === 'ACCEPTED') {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  $scope.isPaid = function(statusT) {
+    if (statusT === 'PAID') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  $scope.finalize = function(trans) {
+    //update transaction status to FINISHED
+  };
+  $scope.pay = function(trans) {
+    //pay the transaction; call API with IPG API
+  }
 })
 
 .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
@@ -302,4 +345,7 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
 
 .controller('AddNoteCtrl', function($scope, Pesanan) {
   $scope.namaPesanan = Pesanan.getNamaPesanan();
+  $scope.sendOrder = function() {
+
+  };
 });

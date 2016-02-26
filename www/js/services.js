@@ -160,17 +160,25 @@ angular.module('starter.services', [])
     statusT: '',
     tanggal: '',
     detail: '',
+    harga: '',
+    apotekNote: '',
   }
   return {
     getTransaksi: function() {
       return transaksi;
     },
-    setTransaksi: function(_nama, _status, _tanggal, _detail) {
+    setTransaksi: function(_id, _nama, _status, _tanggal, _detail, _harga, _note) {
+      transaksi.id = _id;
       transaksi.nama = _nama;
       transaksi.statusT = _status;
       transaksi.tanggal = _tanggal;
-      transaksi.detail = _detail; 
+      transaksi.detail = _detail;
+      transaksi.harga = _harga; 
+      transaksi.apotekNote = _note;
     },
+    getStatusT: function() {
+      return transaksi.statusT;
+    }
   };
 })
 
@@ -178,33 +186,42 @@ angular.module('starter.services', [])
   var listTransaksi = [{
     id: 0,
     nama: 'Order 1',
-    statusT: '1',
+    statusT: 'ACCEPTED',
     tanggal: '19-2-2015',
     detail: 'Obat Cacing (2)',
+    harga: '12000',
+    apotekNote: '',
   }, {
     id: 1,
     nama: 'Order 2',
-    statusT: '2',
+    statusT: 'FINISHED',
     tanggal: '17-4-2015',
     detail: 'Konidin (4), Komix (3)',
+    harga: '20000',
+    apotekNote: '',
   }, {
     id: 2,
     nama: 'Order 3',
-    statusT: '3',
+    statusT: 'PAID',
     tanggal: '31-5-2015',
     detail: 'Entrostop (1)',
+    harga: '10000',
+    apotekNote: 'Obat akan siap dalam 30 menit',
   }, {
     id: 3,
     nama: 'Order 4',
-    statusT: '4',
+    statusT: 'READY',
     tanggal: '2-9-2015',
     detail: 'EnervonC (2), Antangin (5)',
+    harga: '15000',
+    apotekNote: '',
   }, {
     id: 4,
     nama: 'Order 5',
-    statusT: '5',
+    statusT: 'WAITING',
     tanggal: '18-10-2015',
     detail: 'OBH Herbal (1)',
+    apotekNote: '',
   },
 
   ];
