@@ -38,7 +38,7 @@ angular.module('starter.services', [])
     var REST_URL = 'http://tokobat-api.mybluemix.net/';
     //var REST_URL = 'http://localhost:8080/bandung-poi-api/';
     var URL = {
-               'APOTEK_LIST' : REST_URL + '/apotek/list',
+               'APOTEK_LIST' : REST_URL + 'apotek/list',
             };
     return {
         apotekList : function() {

@@ -4,8 +4,25 @@
 	    <h2>{{namaPesanan}}</h2>
 	</div>
 	
-	<div id="map" data-tap-disabled="true"></div>
-	<input id="pac-input" class="controls" type="text" placeholder="Cari apotek...">
+	<div  class="map-content" data-tap-disabled="true">
+    	<ui-gmap-google-map center="map.center" zoom="map.zoom" draggable="true" options="options" id="full-map" bounds="map.bounds">
+    	<ui-gmap-circle center="circle.center" stroke="circle.stroke" fill="circle.fill" radius="circle.radius"
+                visible="circle.visible" geodesic="circle.geodesic" editable="circle.editable" draggable="circle.draggable" clickable="circle.clickable" control="circle.control"   events='circle.events'>
+        </ui-gmap-circle>
+         <ui-gmap-markers models="apotekMarkers" coords="'self'" options="'self'"  events="'self'" >
+        </ui-gmap-markers>
+        <!--
+        <ui-gmap-marker coords="mylocation.coords" options="mylocation.options" events="mylocation.events" idkey="mylocation.id">
+          </ui-gmap-marker>
+        <ui-gmap-markers models="parkMarkers" coords="'self'" options="'self'"  events="'self'" >
+        </ui-gmap-markers>
+        <ui-gmap-markers models="hospitalMarkers" coords="'self'" options="'self'" events="'self'" >
+        </ui-gmap-markers>
+        <ui-gmap-markers models="mosqueMarkers" coords="'self'" options="'self'" events="'self'"  >
+        </ui-gmap-markers> -->
+    </ui-gmap-google-map>
+    </div>
+	<!--<input id="pac-input" class="controls" type="text" placeholder="Cari apotek...">-->
 	<div class="button-bar" style="padding-top: 7px;">
 		<a class="button buttoncolor" ui-sref="tab.upload">Prev</a>
 		<a class="button buttoncolor" ui-sref="tab.addnote">Next</a>

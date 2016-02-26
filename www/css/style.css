@@ -56,3 +56,27 @@
 #pac-input:focus {
   border-color: #4d90fe;
 }
+
+.angular-google-map-container { height: 400px; }
+
+#full-map .angular-google-map-container{
+  height: 65vh;
+}
+
+#small-map .angular-google-map-container{
+  height: 170px;
+}
+
+#small-map2 .angular-google-map-container{
+  height: 150px;
+  margin-top: -10px;
+}
+
+.logo {
+  background: url('../img/icon.png') center center no-repeat;
+    background-size: contain;
+  width: 250px;
+  height: 250px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
