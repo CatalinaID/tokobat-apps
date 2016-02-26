@@ -21,6 +21,10 @@
         <ui-gmap-markers models="mosqueMarkers" coords="'self'" options="'self'" events="'self'"  >
         </ui-gmap-markers> -->
     </ui-gmap-google-map>
+    <div> Apotek Dipilih : 
+        <p ng-if="apt.dipilih!=null"> {{apt.dipilih}}
+        </p>
+    </div>
     </div>
 	<!--<input id="pac-input" class="controls" type="text" placeholder="Cari apotek...">-->
 	<div class="button-bar" style="padding-top: 7px;">

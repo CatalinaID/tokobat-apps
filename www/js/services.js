@@ -39,10 +39,18 @@ angular.module('starter.services', [])
     //var REST_URL = 'http://localhost:8080/bandung-poi-api/';
     var URL = {
                'APOTEK_LIST' : REST_URL + 'apotek/list',
+               'UPLOAD' : REST_URL + 'transactions/resep-upload?image=',
+               'ORDER_RESEP' : REST_URL + 'transactions/order?name=',
             };
     return {
         apotekList : function() {
             return ConnService.processPromise($http.get(URL['APOTEK_LIST']));
+        },
+        upload : function(name) {
+            return ConnService.processPromise($http.post(URL['UPLOAD'] + name));
+        },
+        orderResep : function(name,uId,apotekId,notes) {
+            return ConnService.processPromise($http.post(URL['ORDER_RESEP'] + name + "&userId="+uId+"&apotekId="+apotekId+"&catatan="+notes));
         },
     };
 })
@@ -117,6 +125,7 @@ angular.module('starter.services', [])
     nama: '',
     apotek: '',
     uriimage: '',
+    notes: '',
   };
   return {
     getDetails: function() {
@@ -133,7 +142,22 @@ angular.module('starter.services', [])
     },
     setUriImage: function(_uri) {
       pesanan.uriimage = _uri;
+    },
+    getUriImage: function() {
+      return pesanan.uriimage;
     }, 
+    setNotes: function(_nama) {
+      pesanan.notes = _nama;
+    },
+    getNotes: function() {
+      return pesanan.notes;
+    },
+    setApotek: function(_nama) {
+      pesanan.apotek = _nama;
+    },
+    getApotek: function() {
+      return pesanan.apotek;
+    },
   };
 })
 

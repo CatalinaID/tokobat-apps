@@ -150,6 +150,7 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
   $scope.mylng;
   var pmarkersbound = [];
    $scope.apotekMarkers = [];
+   $scope.apt = {};
 
   $scope.loadLocation = function () { 
     RestService.apotekList().then( function (data) {
@@ -157,6 +158,10 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
          $scope.find();
     })
   };
+
+  $scope.moveNext = function () {
+     $state.go('tab.addnote',{apotekId:$scope.apt.id});
+  }
 
   $scope.setMap = function() {
     $scope.mylat  = -6.224184;
@@ -221,76 +226,6 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
   }
 
   $scope.setMap();
-  /*
-
-  $cordovaGeolocation
-    .getCurrentPosition(options)
-    .then(function (position) {
-     //$scope.mylat  = position.coords.latitude;
-     //$scope.mylng = position.coords.longitude;
-        $scope.mylat  = -6.2243222;
-        $scope.mylng = 107.8055823;
-        $scope.mylocation = {
-          id: 0,
-          coords: {
-            latitude: $scope.mylat,
-            longitude: $scope.lng,
-          },
-          options: { draggable: false,
-            labelContent: "My Location",
-                labelAnchor: "20 0",
-                labelClass: "marker-labels",
-               //icon: {url: "./img/marker.png" ,scaledSize: new google.maps.Size(30, 44)},
-             },
-        };
-        $scope.map = {center: {latitude: $scope.mylat, longitude: $scope.mylng }, zoom: 14, bounds: {} };
-        $scope.circle = 
-        {
-          id: 1,
-          center: {
-              latitude: $scope.mylat,
-              longitude: $scope.mylng
-          },
-          radius: 1300,
-          stroke: {
-              color: '#07D5DC',
-              weight: 1,
-              opacity: 1
-          },
-          fill: {
-              color: '#fff',
-              opacity: 0.5
-          },
-          geodesic: true, // optional: defaults to false
-          draggable: true, // optional: defaults to false
-          clickable: true, // optional: defaults to true
-          editable: true, // optional: defaults to false
-          visible: true, // optional: defaults to true
-          control: {},
-          
-          events:{
-            radius_changed: function(){
-                //$scope.apotekMarkers = [];  $scope.apotekMarkers.length=0;
-                //pmarkersbound = []; pmarkersbound.length=0;
-                $scope.find();
-                
-            },
-            dragend: function(){
-                //$scope.apotekMarkers = [];  $scope.apotekMarkers.length=0;
-                //pmarkersbound = []; pmarkersbound.length=0;
-                $scope.find();
-                
-            }
-          } 
-        };
-         $scope.loadLocation();
-        $scope.mylocation.coords.latitude = $scope.mylat;
-        $scope.mylocation.coords.longitude = $scope.mylng;
-
-    }, function(err) {
-      // error
-      alert('Error fetching position');
-    }); */
 
 
     var createMarker = function(i, scp, img, idKey) {
@@ -305,6 +240,13 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
         labelContent: scp[i].name,
         labelAnchor: "20 0",
         icon:{url: img, scaledSize: new google.maps.Size(30, 44) },
+         events: {
+            click: function () {
+              $scope.apt.dipilih=scp[i].name;
+              $scope.apt.id = scp[i].id;
+              Pesanan.setApotek($scope.apt.id );
+            }
+          },
        
       };
       ret[idKey] = i;
@@ -348,9 +290,24 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
     };
 })
 
-.controller('AddNoteCtrl', function($scope, Pesanan) {
+.controller('AddNoteCtrl', function($scope, Pesanan, $stateParams, RestService, ConnService ) {
   $scope.namaPesanan = Pesanan.getNamaPesanan();
+  $scope.order = {};
+  $scope.order.note = "";
+  $scope.order.apt = Pesanan.getApotek();
+   //$scope.order.imgPath = Pesanan.getApotek();
+
   $scope.sendOrder = function() {
+
+    RestService.orderResep( Pesanan.getNamaPesanan(),"200",Pesanan.getApotek(),$scope.order.note)
+      .then(function (data) {
+          if (data.message==="OK") {    //succeed
+              //console.log(data.imgPath);
+          } else {  //failed
+              console.log("ERORO");
+          }
+      })
+
 
   };
 });
