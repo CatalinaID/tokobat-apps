@@ -1,5 +1,52 @@
 angular.module('starter.services', [])
 
+
+.factory('ConnService', function($http, $q, $timeout) {
+    var connectionEstablished = false;
+    
+    return {
+        processPromise:function(promise) {
+            return promise.then(
+                function(response) {
+                    if (typeof response.data == 'object') {
+                        // correct response
+                        connectionEstablished = true;
+                        return response.data;
+                    } 
+                    else {
+                        // invalid response
+                        connectionEstablished = false;
+                        return null;
+                    }
+                }, 
+                function (response) {
+                    // promise cannot be fulfilled
+                    connectionEstablished = false;
+                    return null;
+                }
+            );
+        },
+        
+        isConnectionEstablished:function() {
+            return connectionEstablished;
+        }
+    };
+})
+
+.factory('RestService', function($http,$q, ConnService, $rootScope) {
+    //var REST_URL = 'http://192.168.43.116:8080/bandung-poi-api/';
+    var REST_URL = 'http://tokobat-api.mybluemix.net/';
+    //var REST_URL = 'http://localhost:8080/bandung-poi-api/';
+    var URL = {
+               'APOTEK_LIST' : REST_URL + '/apotek/list',
+            };
+    return {
+        apotekList : function() {
+            return ConnService.processPromise($http.get(URL['APOTEK_LIST']));
+        },
+    };
+})
+
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
 

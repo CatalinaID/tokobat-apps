@@ -60,7 +60,7 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('UploadCtrl', function($scope, Camera, $cordovaImagePicker, $ionicPlatform, Pesanan) {
+.controller('UploadCtrl', function($scope, Camera, $cordovaImagePicker, $ionicPlatform, Pesanan, RestService, ConnService) {
   $scope.getPhoto = function() {
     Camera.getPicture().then(function(imageURI) {
       console.log(imageURI);
@@ -102,11 +102,18 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('FindApotekCtrl', function($scope, $state, $cordovaGeolocation, Pesanan) {
+.controller('FindApotekCtrl', function($scope, $state, $cordovaGeolocation, Pesanan, RestService, ConnService) {
   $scope.namaPesanan = Pesanan.getNamaPesanan();
 
   var options = {timeout: 10000, enableHighAccuracy: true};
   var infowindow;
+
+  $scope.loadLocation = function () { 
+    RestService.apotekList().then( function (data) {
+        $scope.apoteks = data;
+    })
+  };
+  $scope.loadLocation();
  
   $cordovaGeolocation.getCurrentPosition(options).then(function(position){
  
