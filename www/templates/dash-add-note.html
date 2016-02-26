@@ -5,12 +5,12 @@
 	</div>
 	<div style="padding-top: 7px;">
 		<label class="item item-input">
-			<textarea ng-model="ordernote"></textarea>
+			<textarea ng-model="order.note"></textarea>
 		</label>
 	</div>
 	<div class="button-bar" style="padding-top: 7px;">
 		<a class="button buttoncolor" ui-sref="tab.findapotek">Prev</a>
-		<a class="button buttoncolor" ui-sref="" ng-click="sendOrder()">Order!</a>
+		<a class="button buttoncolor" ng-click="sendOrder()">Order!</a>
 	</div>
   </ion-content>
 </ion-view>
