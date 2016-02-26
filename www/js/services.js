@@ -104,4 +104,72 @@ angular.module('starter.services', [])
       return listpesanan;
     },
   };
+})
+
+.factory('Transaksi', function() {
+  var transaksi = {
+    id: '',
+    nama: '',
+    statusT: '',
+    tanggal: '',
+    detail: '',
+  }
+  return {
+    getTransaksi: function() {
+      return transaksi;
+    },
+    setTransaksi: function(_nama, _status, _tanggal, _detail) {
+      transaksi.nama = _nama;
+      transaksi.statusT = _status;
+      transaksi.tanggal = _tanggal;
+      transaksi.detail = _detail; 
+    },
+  };
+})
+
+.factory('ListTransaksi', function(Transaksi) {
+  var listTransaksi = [{
+    id: 0,
+    nama: 'Order 1',
+    statusT: '1',
+    tanggal: '19-2-2015',
+    detail: 'Obat Cacing (2)',
+  }, {
+    id: 1,
+    nama: 'Order 2',
+    statusT: '2',
+    tanggal: '17-4-2015',
+    detail: 'Konidin (4), Komix (3)',
+  }, {
+    id: 2,
+    nama: 'Order 3',
+    statusT: '3',
+    tanggal: '31-5-2015',
+    detail: 'Entrostop (1)',
+  }, {
+    id: 3,
+    nama: 'Order 4',
+    statusT: '4',
+    tanggal: '2-9-2015',
+    detail: 'EnervonC (2), Antangin (5)',
+  }, {
+    id: 4,
+    nama: 'Order 5',
+    statusT: '5',
+    tanggal: '18-10-2015',
+    detail: 'OBH Herbal (1)',
+  },
+
+  ];
+  return {
+    addToList: function(trans) {
+      listTransaksi.push(trans);
+    },
+    getList: function() {
+      return listTransaksi;
+    },
+    remove: function(trans) {
+      listTransaksi.splice(listTransaksi.indexOf(trans), 1);
+    },
+  };
 });

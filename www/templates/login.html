@@ -1,8 +1,9 @@
 <ion-view view-title="Tokobat">
   <ion-content class="padding" id="login-form">
-    <div class="row center" >
+    <div class="row" >
     	<img ng-src="../img/icon.png" class="center" id="logologin" />
     </div>
+    <div class="row">
     <div class="list">
 	   <label class="item item-input">
 	   	<input type="text" placeholder="Username" ng-model="username">
@@ -11,6 +12,7 @@
 	   <label class="item item-input">
 	   	<input type="password" placeholder="Password" ng-model="password">
 	   </label>
+	</div>
 	</div>
 	<button class="button button-block buttoncolor" ng-click="login(username, password)">
 	   Login
