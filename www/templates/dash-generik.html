@@ -1,0 +1,19 @@
+<ion-view view-title="Cari Obat">
+  <ion-content class="padding">
+    <div>
+	    <label class="item item-input">
+		   	<input type="text" placeholder="Nama pesanan" ng-model="namaPesanan">
+		</label>
+	</div>
+	<div>
+		<label class="item item-input">
+		   	<input type="text" placeholder="Nama obat" ng-model="namaObat">
+		   	<input type="text" placeholder="Jumlah" ng-model="jmlObat">
+		   	<a class="button" ng-click="">Order</a>
+		</label>
+	</div>
+	<div class="button-bar">
+		<a class="button" ui-sref="tab.findapotek" ng-click="setUpPesanan(namaPesanan)">Next</a>
+	</div>
+  </ion-content>
+</ion-view>

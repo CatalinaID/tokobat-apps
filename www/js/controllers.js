@@ -40,8 +40,12 @@ angular.module('starter.controllers', [])
   
 })
 
-.controller('SearchCtrl', function($scope) {
-
+.controller('GenerikCtrl', function($scope, Pesanan) {
+  $scope.setUpPesanan = function(name){
+    console.log(name);
+    Pesanan.setNamaPesanan(name);
+    Pesanan.setUriImage($scope.uri);
+  }
 })
 
 .controller('UploadCtrl', function($scope, Camera, $cordovaImagePicker, $ionicPlatform, Pesanan) {
@@ -144,4 +148,8 @@ angular.module('starter.controllers', [])
   }
 
 
+})
+
+.controller('AddNoteCtrl', function($scope, Pesanan) {
+  $scope.namaPesanan = Pesanan.getNamaPesanan();
 });

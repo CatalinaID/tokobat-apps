@@ -88,4 +88,13 @@ angular.module('starter.services', [])
       pesanan.uriimage = _uri;
     }, 
   };
+})
+
+.factory('ListPesanan', function() {
+  var listpesanan = [];
+  return {
+    addToList: function(namaobat, jmlobat) {
+      var 
+    }
+  };
 });

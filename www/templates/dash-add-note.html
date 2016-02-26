@@ -1,0 +1,16 @@
+<ion-view view-title="Catatan Order">
+  <ion-content class="padding">
+    <div>
+	    <h2>{{namaPesanan}}</h2>
+	</div>
+	<div>
+		<label class="item item-input">
+			<textarea ng-model="ordernote"></textarea>
+		</label>
+	</div>
+	<div class="button-bar">
+		<a class="button" ui-sref="tab.findapotek">Prev</a>
+		<a class="button" ui-sref="">Order!</a>
+	</div>
+  </ion-content>
+</ion-view>

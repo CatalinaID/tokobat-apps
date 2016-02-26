@@ -73,12 +73,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     }
   })
-  .state('tab.search', {
-      url: '/dash/search',
+  .state('tab.addnote', {
+    url: '/dash/add-note',
+    views: {
+      'tab-dash': {
+        templateUrl: 'templates/dash-add-note.html',
+        controller: 'AddNoteCtrl'
+      }
+    }
+  })
+  .state('tab.generik', {
+      url: '/dash/generik',
       views: {
         'tab-dash': {
-          templateUrl: 'templates/dash-search.html',
-          controller: 'UploadCtrl'
+          templateUrl: 'templates/dash-generik.html',
+          controller: 'GenerikCtrl'
         }
       }
     })
