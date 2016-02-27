@@ -1,5 +1,20 @@
 angular.module('starter.services', [])
 
+.config(function($cordovaInAppBrowserProvider) {
+
+  var defaultOptions = {
+    location: 'no',
+    clearcache: 'no',
+    toolbar: 'no'
+  };
+
+  document.addEventListener(function () {
+
+    $cordovaInAppBrowserProvider.setDefaultOptions(options)
+
+  }, false);
+}) 
+
 
 .factory('ConnService', function($http, $q, $timeout) {
     var connectionEstablished = false;
@@ -41,6 +56,10 @@ angular.module('starter.services', [])
                'APOTEK_LIST' : REST_URL + 'apotek/list',
                'UPLOAD' : REST_URL + 'transactions/resep-upload?image=',
                'ORDER_RESEP' : REST_URL + 'transactions/order?name=',
+               'PAY' : REST_URL + '  transactions/',
+
+               // transactions/100/payment?returnUrl=http://ichakid.com
+
             };
     return {
         apotekList : function() {
@@ -51,6 +70,9 @@ angular.module('starter.services', [])
         },
         orderResep : function(name,uId,apotekId,notes) {
             return ConnService.processPromise($http.post(URL['ORDER_RESEP'] + name + "&userId="+uId+"&apotekId="+apotekId+"&catatan="+notes));
+        },
+        pay : function(id) {
+            return ConnService.processPromise($http.get(URL['PAY'] + id + "/payment?returnUrl=http://ichakid.com"));
         },
     };
 })

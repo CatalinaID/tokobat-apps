@@ -4,7 +4,7 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
   
 })
 
-.controller('TransaksiCtrl', function($scope, Transaksi, ListTransaksi) {
+.controller('TransaksiCtrl', function($scope,  $rootScope, Transaksi, ListTransaksi,RestService, ConnService) {
   $scope.listtrans = ListTransaksi.getList();
   $scope.remove = function(trans) {
     ListTransaksi.remove(trans);
@@ -49,28 +49,62 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
   };
   $scope.pay = function(trans) {
     //pay the transaction; call API with IPG API
-  }
-})
+     RestService.pay("1")
+      .then(function (data) {
+          if (data.urlToPay) {    //succeed
+                $cordovaInAppBrowser.open(data.urlToPay, '_blank', options)
+          } else {  //failed
+              console.log("ERORO");
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
-})
+        $cordovaInAppBrowser.close();
+          }
+      })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
-})
+      $rootScope.$on('$cordovaInAppBrowser:loadstart', function(e, event){
 
-.controller('LoginCtrl', function($scope, $state) {
-  $scope.pagetitle = '<div class=\"smalllogo\">';
-  $scope.login = function(username, password) {
-    console.log(username);
-    console.log(password);
-    if (username == 'Hayyu' && password == 'password') {
-      $state.go('tab.dash');
-    } 
-  };
+      });
+
+      $rootScope.$on('$cordovaInAppBrowser:loadstop', function(e, event){
+        // insert CSS via code / file
+        $cordovaInAppBrowser.insertCSS({
+          code: 'body {background-color:blue;}'
+        });
+
+        // insert Javascript via code / file
+        $cordovaInAppBrowser.executeScript({  
+          file: 'script.js'
+        });
+      });
+
+      $rootScope.$on('$cordovaInAppBrowser:loaderror', function(e, event){
+
+      });
+
+      $rootScope.$on('$cordovaInAppBrowser:exit', function(e, event){
+
+      });
+      }
+    })
+
+    .controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
+      $scope.chat = Chats.get($stateParams.chatId);
+    })
+
+    .controller('AccountCtrl', function($scope) {
+      $scope.settings = {
+        enableFriends: true
+      };
+    })
+
+    .controller('LoginCtrl', function($scope, $state) {
+      $scope.pagetitle = '<div class=\"smalllogo\">';
+      $scope.login = function(username, password) {
+        console.log(username);
+        console.log(password);
+        if (username == 'Hayyu' && password == 'password') {
+          $state.go('tab.dash');
+        } 
+      };
   
 })
 
@@ -290,7 +324,7 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
     };
 })
 
-.controller('AddNoteCtrl', function($scope, Pesanan, $stateParams, RestService, ConnService ) {
+.controller('AddNoteCtrl', function($scope, Pesanan, $state, $stateParams, RestService, ConnService ) {
   $scope.namaPesanan = Pesanan.getNamaPesanan();
   $scope.order = {};
   $scope.order.note = "";
@@ -302,7 +336,7 @@ angular.module('starter.controllers',['uiGmapgoogle-maps', 'ngCordova'])
     RestService.orderResep( Pesanan.getNamaPesanan(),"200",Pesanan.getApotek(),$scope.order.note)
       .then(function (data) {
           if (data.message==="OK") {    //succeed
-              //console.log(data.imgPath);
+               $state.go('tab.transaksi');
           } else {  //failed
               console.log("ERORO");
           }
